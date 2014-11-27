@@ -1,6 +1,7 @@
 var express = require('express'),
     morgan  = require('morgan'),
-    path = require('path');
+    path = require('path'),
+    routes = require('./routes/routes.js');
 
 // Create a class that will be our main application
 var SimpleStaticServer = function() {
@@ -16,6 +17,11 @@ var SimpleStaticServer = function() {
   //	self.app.use(connect(connect.basicAuth('j', 'jmjm')))
   self.app.use(morgan('[:date] :method :url :status'));	// Log requests
   self.app.use(express.static(path.join(__dirname, 'public')));	// Process static files
+  self.app.set('views', __dirname + '/views');
+  self.app.set('view engine', 'ejs');
+
+  self.app.get('/', routes.index);
+
 
   // Start the server (starts up the sample application).
   self.start = function() {
