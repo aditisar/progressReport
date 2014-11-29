@@ -1,11 +1,11 @@
 function createSession(){
-    var url= "omelet/";
+    var url= "setGoal";
     $.ajax({
         type: 'GET',
         url: url,
-        success: function(result) {
-            $('#all').html(result);
-        }
+        // success: function(result) {
+        //     $('#all').html(result);
+        // }
     });
 };
 

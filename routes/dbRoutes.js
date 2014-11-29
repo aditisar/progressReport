@@ -1,5 +1,5 @@
 // Requires the application model
-var mongo = require("../models/mymongo.js")
+var mongo = require("../models/user.js")
 
 // No path:  display instructions for use
 exports.index = function(req, res) {
@@ -35,17 +35,6 @@ exports.mongo = function(req, res){
 		                                }
 		                              );
 									 	break;
-		//added delete
-		case 'delete': console.log("req.query is "+JSON.stringify(req.query));
-		                mongo.delete( req.params.collection, 
-		                              req.query,
-		                              function(model) {
-		                                res.render('mongo', {title: 'Mongo Demo', obj: model});
-		                                }
-		                              );
-		                console.log("at end of delete case");
-									 	break;
-		}
 	}
 	
 
