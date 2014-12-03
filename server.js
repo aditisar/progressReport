@@ -23,7 +23,7 @@ var SimpleStaticServer = function() {
   self.app.set('view engine', 'ejs');
 
   // self.app.get('/', routes.index);
-  // self.app.get('/setGoal', routes.setGoal);
+  self.app.put('/createSession/:p1', sockets.createSession);
   // self.app.get('/confirm', routes.confirm);
   // self.app.get('/go', routes.go);
 
