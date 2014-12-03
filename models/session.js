@@ -1,18 +1,22 @@
-var user = function(name, color, size){
+var session = function(name){
 	return {
-		username: name,
-		description: description,
+		name: name,
+		p1: "",
+		p2: ""
 	}
 }
 
-user.prototype.getName = function(){
+session.prototype.getName = function(){
 	return this.name;
 }
-user.prototype.getDescription = function(){
-	return this.description;
+session.prototype.getp1 = function(){
+	return this.p1;
 }
-user.prototype.toString = function(){
-	return "Name: " + this.name + " Description: " + this.description;
+session.prototype.getp2 = function(){
+	return this.p2;
+}
+session.prototype.toString = function(){
+	return "Name: " + this.name + " P1: " + this.p1 + "P2: " + this.p2;
 }
 
-module.exports = user;
+module.exports = session;

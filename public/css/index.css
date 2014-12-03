@@ -4,5 +4,13 @@
 }*/
 
 body {
+	background-color: mintcream;
+	font-family: "Myriad Pro", "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
 
+#chatbox {
+    height: 150;
+    background: white;
+    overflow: auto; /* allows for a scrolling chat box*/
+    border: 1px solid;
 }

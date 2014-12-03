@@ -2,8 +2,8 @@ var express = require('express'),
     http = require('http'),
     morgan  = require('morgan'),
     path = require('path'),
-    sio =require('socket.io');
-    routes = require('./routes/routes.js');
+    sio =require('socket.io'),
+    sockets = require('./routes/serverSocket.js');
 
 // Create a class that will be our main application
 var SimpleStaticServer = function() {
@@ -22,10 +22,10 @@ var SimpleStaticServer = function() {
   self.app.set('views', __dirname + '/views');
   self.app.set('view engine', 'ejs');
 
-  self.app.get('/', routes.index);
-  self.app.get('/setGoal', routes.setGoal);
-  self.app.get('/confirm', routes.confirm);
-  self.app.get('/go', routes.go);
+  // self.app.get('/', routes.index);
+  // self.app.get('/setGoal', routes.setGoal);
+  // self.app.get('/confirm', routes.confirm);
+  // self.app.get('/go', routes.go);
 
 
 
@@ -46,6 +46,8 @@ var SimpleStaticServer = function() {
       console.log('%s: Node server started on %s:%d ...',
                         Date(Date.now() ), self.ipaddress, self.port);
     });
+    sockets.init(io);
+
   };
 }; 
 

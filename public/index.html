@@ -1,0 +1,78 @@
+<html>
+<head>
+  <title>Progress Reports</title>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <link rel="stylesheet" href="/css/index.css">
+  <script src="/js/index.js"></script>
+
+</head>
+
+<body>
+	<!-- START SCREEN -->
+	<div id="home">
+		<div id="home-content">
+			<h1> Welcome to Progress Reporting </h1>
+			<!-- <form action="setGoal"> -->
+			<p> Create/enter a session: <input id="sessionName"><br/>
+				Create/enter a username: <input id="username"><br/>
+				<button id="indexSubmitButton" type="submit">Go</button>
+			</p> 
+			<!-- </form> -->
+		</div> <!-- home-info -->
+	</div> <!-- home -->
+
+	<!-- SET GOAL SCREEN-->
+	<div id="setgoal">
+		<div id="setgoal-content">
+			<h1> Goal? </h1>
+			<!-- <form action="confirm"> -->
+			<p> What's your goal? <br/>
+			 <textarea rows="4" cols="50" id="goalDescription"></textarea><br/>
+			How many minutes: <input id="time"><br/>
+			<button id="goalSubmitButton" type="submit">Go</button>
+			</p> 
+			<!-- </form> -->
+		</div> <!-- setgoal-content -->
+	</div> <!-- setgoal -->
+
+	<div id="confirm">
+		<div id="confirm-content">
+			<h1> Your Goal </h1>
+			<p id="goalA">  
+			</p> 
+			<h1> Their Goal </h1>
+			<p id="goalB">
+			</p>
+		</div> <!-- confirm-content -->
+	</div> <!-- confirm -->
+
+	<div id="go">
+		<div id="go-content">
+			<h1> Your Goal </h1>
+			<p id="goalA">  
+			</p> 
+			<h1> Their Goal </h1>
+			<p id="goalB">
+			</p>
+			<!-- chat box -->
+			<div id='chatbox'>
+			</div>
+			<!-- timer -->
+			<!-- finish buttons -->
+		</div> <!-- go-content -->
+	</div> <!-- go -->
+
+
+
+	<div id="awaiting-friend">
+		Waiting for another person to join...
+	</div> <!-- awaiting-player -->
+
+	<div id="quorum-full">
+		There are already two people using this session name. 
+	</div>
+	
+
+	
+</body>
+</html>
