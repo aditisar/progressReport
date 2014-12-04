@@ -55,6 +55,13 @@ exports.init = function(io) {
 		socket.on('disconnect', function(){
 		    console.log("Someone just left");
 		    currentlyOpen--;
+		    if (socket == userSockets[1]){
+		    	console.log('user 1 left');
+		    	currentUsers--;
+		    } else if (socket == userSockets[2]){
+		    	console.log('user 2 left');
+		    	currentUsers--;
+		    }
 		    console.log("currentlyOpen = "+currentlyOpen);
 		});		
 

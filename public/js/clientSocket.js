@@ -25,28 +25,27 @@ $(document).ready(function() {
 		}
 	});
 
+    //this is called when >2 users try to join
     socket.on('displayBusyMessage', function(){
-    	$('home').hide();
+    	$('#home').hide();
     	$('#setgoal').hide();
 		$('#confirm').hide();
 		$('#go').hide();
 		$('#busy-message').fadeIn();
     });
 
+    //called after user has been added
     socket.on('loadEnterGoal', function(){
 		$('#home').fadeOut().promise().done(function(){
 	  		$('#setgoal').fadeIn(1000);
 	  	});
     });
 
-
-
 	$('#goalSubmitButton').click(function(){
 		if ($('#goalDescription').val().length > 0){
 
 			goal = $('#goalDescription').val();
 			sessionStorage.goal = goal;
-			socket.emit('addPlayer', {name:username});
 			$('#setgoal').fadeOut().promise().done(function(){
 	  			$('#go').fadeIn(1000);
 	  		});
