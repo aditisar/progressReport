@@ -7,7 +7,7 @@ $(document).ready(function() {
 	$('#setgoal').hide();
 	$('#confirm').hide();
 	$('#go').hide();
-	$('#wait-message').hide();
+	$('#busy-message').hide();
 
 
 
@@ -26,7 +26,6 @@ $(document).ready(function() {
 	});
 
     socket.on('displayBusyMessage', function(){
-    	
     	$('home').hide();
     	$('#setgoal').hide();
 		$('#confirm').hide();

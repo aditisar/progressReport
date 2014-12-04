@@ -19,34 +19,38 @@ exports.init = function(io) {
 		currentlyOpen++;
 		console.log("currentlyOpen = "+currentlyOpen);
 
+		//if 2 people are already playing
+		if (currentUsers == 2){
+			console.log('dis test');
+			socket.emit('displayBusyMessage');
+		}
+		
 		//Since there is a max of two players at a time, only add new client if there is space
-
 		socket.on('addPlayer', function(data){
 			if(currentUsers == 0){
 				//users.push(data.name);
 				currentUsers++;
-				playerSockets[1] = socket;
-			}
-
-		    if (currentUsers == 1){
+				userSockets[1] = socket;
+			} else if (currentUsers == 1){
 		    	currentUsers++;
-				playerSockets[2] =socket;
+				userSockets[2] =socket;
 			} else {
-				socket.emit('displayWaitMessage');
+				socket.emit('displayBusyMessage');
 			}
+			console.log("currentUsers = "+currentUsers);
 		});
 		
-		//when a game is started, check if the person is the first or second person to enter
-		//then allow the user to enter their goal
+		//when a game is started, let each person enter a goal
 		socket.on('startSession', function(message){
 			//if there's only one user so far
 			if(currentUsers == 1){
 				userSockets[1].emit('loadEnterGoal');
 			} else if (currentUsers == 2) {
-
+				userSockets[2].emit('loadEnterGoal');
 			}
-
 		});
+
+
 		
 		socket.on('disconnect', function(){
 		    console.log("Someone just left");
