@@ -13,12 +13,14 @@ exports.init = function(io) {
 	var currentlyOpen = 0; //number of clients
 	var currentUsers = 0; //number of players in game
 	console.log("currentlyOpen = "+currentlyOpen);
-
+	console.log("currentUsers = "+currentUsers);
+  
   // When a new connection is initiated
 	io.sockets.on('connection', function (socket) {
 		currentlyOpen++;
+		console.log("New window opened");
 		console.log("currentlyOpen = "+currentlyOpen);
-
+		console.log("currentUsers = "+currentUsers);
 		//if 2 people are already playing
 		if (currentUsers == 2){
 			console.log('dis test');
@@ -58,11 +60,18 @@ exports.init = function(io) {
 		    if (socket == userSockets[1]){
 		    	console.log('user 1 left');
 		    	currentUsers--;
+		    	//move p2 to p1's position
+		    	userSockets[1] = userSockets[2];
+		    	userSockets[2] = null;
 		    } else if (socket == userSockets[2]){
 		    	console.log('user 2 left');
 		    	currentUsers--;
+		    	//get rid of their socket
+		    	userSockets[2] = null;
 		    }
 		    console.log("currentlyOpen = "+currentlyOpen);
+		    console.log("currentUsers = "+currentUsers);
+
 		});		
 
 	});
