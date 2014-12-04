@@ -14,3 +14,7 @@ body {
     overflow: auto; /* allows for a scrolling chat box*/
     border: 1px solid;
 }
+
+#chatbox-content{
+	margin-left: 5px;
+}
