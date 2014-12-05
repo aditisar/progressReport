@@ -43,14 +43,22 @@ $(document).ready(function() {
 
 	$('#goalSubmitButton').click(function(){
 		if ($('#goalDescription').val().length > 0){
-
 			goal = $('#goalDescription').val();
 			sessionStorage.goal = goal;
+			time = $('#time').val();
+			socket.emit('timeSet', {time: time});
 			$('#setgoal').fadeOut().promise().done(function(){
 	  			$('#go').fadeIn(1000);
 	  		});
-			socket.emit('startGame');
 		}
+	});
+
+	//once time is set by other player, don't let them choose and tell them why
+	socket.on('lockTime', function(data){
+		$('#time').val(data.time);
+		$('#time').prop('disabled', true);
+		$( '<em><p>Time has already been set by the other user</p></em>' ).insertAfter( '#time' );
+		socket.emit('debug', {message: 'time should be locked'})
 	});
 
 });
