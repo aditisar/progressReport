@@ -8,7 +8,7 @@ $(document).ready(function() {
 	$('#confirm').hide();
 	$('#go').hide();
 	$('#busy-message').hide();
-
+	$('#awaiting-friend').hide();
 
 
 	//When user clicks go, their username is stored in sessionStorage 
@@ -31,16 +31,30 @@ $(document).ready(function() {
     	$('#setgoal').hide();
 		$('#confirm').hide();
 		$('#go').hide();
+		$('#awaiting-friend').hide();
 		$('#busy-message').fadeIn();
     });
 
+    //this is called when we're waiting for another player
+    socket.on('displayWaitMessage', function(){
+    	$('#home').hide();
+    	$('#setgoal').hide();
+		$('#confirm').hide();
+		$('#go').hide();
+		$('#busy-message').hide();
+		$('#awaiting-friend').fadeIn();
+    });
+
+
     //called after user has been added
     socket.on('loadEnterGoal', function(){
+		$('#awaiting-friend').hide();
 		$('#home').fadeOut().promise().done(function(){
 	  		$('#setgoal').fadeIn(1000);
 	  	});
     });
 
+    //When someone submits a goal, if other person has not submitted yet, time is set 
 	$('#goalSubmitButton').click(function(){
 		if ($('#goalDescription').val().length > 0){
 			goal = $('#goalDescription').val();
@@ -48,7 +62,7 @@ $(document).ready(function() {
 			time = $('#time').val();
 			socket.emit('timeSet', {time: time});
 			$('#setgoal').fadeOut().promise().done(function(){
-	  			$('#go').fadeIn(1000);
+	  			$('#confirm').fadeIn(1000);
 	  		});
 		}
 	});

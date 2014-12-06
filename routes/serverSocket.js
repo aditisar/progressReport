@@ -46,8 +46,10 @@ exports.init = function(io) {
 		socket.on('startSession', function(message){
 			//if there's only one user so far
 			if(currentUsers == 1){
-				userSockets[1].emit('loadEnterGoal');
+				socket.emit('displayWaitMessage');
+				//userSockets[1].emit('loadEnterGoal');
 			} else if (currentUsers == 2) {
+				userSockets[1].emit('loadEnterGoal');
 				userSockets[2].emit('loadEnterGoal');
 			}
 		});
@@ -56,7 +58,7 @@ exports.init = function(io) {
 		socket.on('timeSet', function(data){
 			console.log('time has been set by ');
 			//if user1 sets time, lock the time for user2
-			if(socket == userSockets[1]){
+			if(socket == userSockets[1] && userSockets[2] != undefined){
 				console.log('user1');
 				userSockets[2].emit('lockTime', {time: data.time});
 			} else if (socket == userSockets[2]){ 			//if user2 sets the time, lock the time for user1
