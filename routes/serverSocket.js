@@ -55,19 +55,24 @@ exports.init = function(io) {
 		});
 
 		//once you submit a time, it should take you to the confirm/wait page with the go button that will appear once both goals are in/ time is locked for other user then
-		socket.on('timeSet', function(data){
+		socket.on('timeAndGoalSet', function(data){
 			console.log('time has been set by ');
 			//if user1 sets time, lock the time for user2
 			if(socket == userSockets[1] && userSockets[2] != undefined){
 				console.log('user1');
-				userSockets[2].emit('lockTime', {time: data.time});
+				userSockets[2].emit('lockTimeAndOtherGoal', {time: data.time, goal: data.goal});
 			} else if (socket == userSockets[2]){ 			//if user2 sets the time, lock the time for user1
 				console.log('user2');
-				userSockets[1].emit('lockTime', {time: data.time});
+				userSockets[1].emit('lockTimeAndOtherGoal', {time: data.time, goal: data.goal});
 			}
 			//trigger a client event that automatically sets the time for the  user who didn't pick the time 
 		});
 		
+		socket.on('startTimer', function(){
+			userSockets[1].emit('startTimer');
+			userSockets[2].emit('startTimer');
+		});
+
 		socket.on('debug', function(data){
 			console.log(data.message);
 		});

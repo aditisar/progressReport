@@ -59,8 +59,10 @@ $(document).ready(function() {
 		if ($('#goalDescription').val().length > 0){
 			goal = $('#goalDescription').val();
 			sessionStorage.goal = goal;
+			$('#goalA').text(goal);
 			time = $('#time').val();
-			socket.emit('timeSet', {time: time});
+			sessionStorage.time = time;
+			socket.emit('timeAndGoalSet', {time: time, goal: goal});
 			$('#setgoal').fadeOut().promise().done(function(){
 	  			$('#confirm').fadeIn(1000);
 	  		});
@@ -68,11 +70,25 @@ $(document).ready(function() {
 	});
 
 	//once time is set by other player, don't let them choose and tell them why
-	socket.on('lockTime', function(data){
+	socket.on('lockTimeAndOtherGoal', function(data){
 		$('#time').val(data.time);
 		$('#time').prop('disabled', true);
 		$( '<em><p>Time has already been set by the other user</p></em>' ).insertAfter( '#time' );
+		$('#goalB').text(data.goal);
+
 		socket.emit('debug', {message: 'time should be locked'})
+	});
+
+
+	$('#confirmSubmitButton').click(function(){
+		socket.emit('startTimer');
+
+	});
+
+	socket.on('startTimer', function(){
+		$('#confirm').fadeOut().promise().done(function(){
+	  			$('#go').fadeIn(1000);
+	  		});
 	});
 
 });
