@@ -78,7 +78,7 @@ $(document).ready(function() {
 
 		socket.emit('debug', {message: 'time should be locked'})
 	});
-
+//NEED TO MAKE IT SO CONFIRM BUTTON 
 
 	$('#confirmSubmitButton').click(function(){
 		socket.emit('startTimer');
@@ -89,6 +89,9 @@ $(document).ready(function() {
 		$('#confirm').fadeOut().promise().done(function(){
 	  			$('#go').fadeIn(1000);
 	  		});
+		timeInSeconds = sessionStorage.time * 60;
+		$('#timer').countdown({until: +timeInSeconds, format: 'mS'}); 
+
 	});
 
 });
