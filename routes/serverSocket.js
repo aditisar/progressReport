@@ -82,7 +82,7 @@ exports.init = function(io) {
 
 		//chat functionality
 		socket.on('sendMessage', function(data){
-			io.sockets.emit('newChat', {message: data.message});
+			io.sockets.emit('newChat', {name: data.name, message: data.message});
 		});
 
 		socket.on('debug', function(data){

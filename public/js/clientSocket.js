@@ -9,6 +9,7 @@ $(document).ready(function() {
 	$('#go').hide();
 	$('#busy-message').hide();
 	$('#awaiting-friend').hide();
+	$('#timeup').hide();
 
 
 	//When user clicks go, their username is stored in sessionStorage 
@@ -65,7 +66,7 @@ $(document).ready(function() {
 	$('#goalSubmitButton').click(function(){
 		if ($('#goalDescription').val().length > 0){
 			goal = $('#goalDescription').val();
-			sessionStorage.goal = goal;
+			sessionStorage.myGoal = goal;
 			$('#goalA').text(goal);
 			time = $('#time').val();
 			sessionStorage.time = time;
@@ -94,6 +95,7 @@ $(document).ready(function() {
 		$('#time').val(data.time);
 		$('#time').prop('disabled', true);
 		$( '<em><p>Time has already been set by the other user</p></em>' ).insertAfter( '#time' );
+		sessionStorage.theirGoal = data.goal;
 		$('#goalB').text(data.goal);
 
 		socket.emit('debug', {message: 'time should be locked'})
@@ -105,6 +107,8 @@ $(document).ready(function() {
 	});
 
 	socket.on('startTimer', function(){
+		$('#myGoal').append('<p>'+sessionStorage.myGoal +'</p>');
+		$('#theirGoal').append('<p>'+sessionStorage.theirGoal +'</p>');
 		$('#confirm').fadeOut().promise().done(function(){
 	  			$('#go').fadeIn(1000);
 	  		});
@@ -118,15 +122,15 @@ $(document).ready(function() {
       if(e.keyCode==13)
       $('#chatboxSendButton').click();
     });
-
+	//once user hits enter, chat is sent
     $('#chatboxSendButton').click(function(){
     	var message = $('#chatbox-send').val();
-    	socket.emit('sendMessage', {message: message})
+    	socket.emit('sendMessage', {message: message, name: sessionStorage.playername})
     	$('#chatbox-send').val('');
     });
-
+    //once new chat is recieved from server, it is displayed and scrolls
     socket.on('newChat', function(data){
-    	var newMessage = '<p>'+data.message+'</p>'
+    	var newMessage = '<p><strong>'+data.name+': </strong>'+data.message+'</p>'
     	$('#chatbox-content').append(newMessage);
 		$('#chatbox-content')[0].scrollTop = $('#chatbox-content')[0].scrollHeight;
     });
@@ -134,8 +138,10 @@ $(document).ready(function() {
 
 	function removeCountdown(){
 		$('#timer').fadeOut();
+		$('#go').fadeOut().promise().done(function(){
+	  			$('#timeup').fadeIn(1000);
+	  	});	
 	}
-
 
 
 	//refresh the page
