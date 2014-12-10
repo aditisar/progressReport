@@ -68,6 +68,11 @@ exports.init = function(io) {
 			//trigger a client event that automatically sets the time for the  user who didn't pick the time 
 		});
 		
+		socket.on('displayGO', function(){
+			console.log('should be shoiwng the GO button now...');
+			io.sockets.emit('displayGO');
+		});
+
 		socket.on('startTimer', function(){
 			userSockets[1].emit('startTimer');
 			userSockets[2].emit('startTimer');

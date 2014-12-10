@@ -71,9 +71,22 @@ $(document).ready(function() {
 			sessionStorage.time = time;
 			socket.emit('timeAndGoalSet', {time: time, goal: goal});
 			$('#setgoal').fadeOut().promise().done(function(){
+	  			$('#confirmSubmitButton').hide();
 	  			$('#confirm').fadeIn(1000);
 	  		});
+		//Display GO button if both goals have been set
+			if($('#goalA').text().length>0 && $('#goalB').text().length>0){
+				socket.emit('displayGO');
+				console.log('passed code');
+
+			}	
 		}
+
+	});
+
+
+	socket.on('displayGO', function(){
+		$('#confirmSubmitButton').fadeIn(300);
 	});
 
 	//once time is set by other player, don't let them choose and tell them why
@@ -116,9 +129,7 @@ $(document).ready(function() {
     socket.on('newChat', function(data){
     	var newMessage = '<p>'+data.message+'</p>'
     	$('#chatbox-content').append(newMessage);
-    	$("#chatbox-content").animate({
-        	scrollTop: $("#chatbox-content").scrollHeight()
-    	}, 300);
+		$('#chatbox-content')[0].scrollTop = $('#chatbox-content')[0].scrollHeight;
     });
 
 
