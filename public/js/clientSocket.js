@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var socket = io.connect('/:8000');
+	var socket = io.connect('/');
 	var username = "";
 
 	//start with the username screen
@@ -59,6 +59,7 @@ $(document).ready(function() {
 		$('#awaiting-friend').hide();
 		$('#home').fadeOut().promise().done(function(){
 	  		$('#setgoal').fadeIn(1000);
+	  		$('#timeSet').hide();
 	  	});
     });
 
@@ -94,7 +95,7 @@ $(document).ready(function() {
 	socket.on('lockTimeAndOtherGoal', function(data){
 		$('#time').val(data.time);
 		$('#time').prop('disabled', true);
-		$( '<em><p>Time has already been set by the other user</p></em>' ).insertAfter( '#time' );
+		$('#timeSet').show();
 		sessionStorage.theirGoal = data.goal;
 		$('#goalB').text(data.goal);
 
@@ -143,7 +144,17 @@ $(document).ready(function() {
 	  	});	
 	}
 
+	//resets goal info (doesn't touch Sessionstorage tho in case they use the same one)
+	function resetGoal(){
+		$('#time').prop('disabled', false);
+	}
 
+	$('#repeatGoalButton').click(function(){
+		$('#timeup').fadeOut().promise().done(function(){
+	  			$('#setgoal').fadeIn(1000);
+	  			$('#goalDescription').text(sessionStorage.myGoal);
+	  	});
+	});
 	//refresh the page
 	$('#finish').click(function(){
 		location.reload();

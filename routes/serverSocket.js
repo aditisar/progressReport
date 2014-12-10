@@ -1,13 +1,6 @@
-var session = require('../models/session.js');
 //var session = require('../models/user.js');
 //var users = [];
 var userSockets = [];
-
-exports.createSession = function(req, res){
-	var s = session("test");
-	s.p1 = req.params.p1;
-}
-
 
 exports.init = function(io) {
 	var currentlyOpen = 0; //number of clients

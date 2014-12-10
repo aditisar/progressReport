@@ -15,23 +15,22 @@
 </head>
 
 <body>
-	<div id ='wrapper'>
 	<!-- START SCREEN -->
-	<div id="home">
-		<div id="home-content">
+	<div id="home" class='row'>
+		<div id="home-content" class="small-5 medium-8 large-12 column">
 			<h1> Welcome to Progress Reporting </h1>
 			<!-- <form action="setGoal"> -->
 			<!-- <p> Create/enter a session: <input id="sessionName"><br/> -->
-			<p>	Create/enter a username: <input id="username"><br/>
-				<button id="homeGo" type="submit">Go</button>
+			<p>	Enter name: <input id="username"><br/>
+				<button class="button radius round" id="homeGo" type="submit">Go</button>
 			</p> 
 			<!-- </form> -->
 		</div> <!-- home-info -->
 	</div> <!-- home -->
 
 	<!-- SET GOAL SCREEN-->
-	<div id="setgoal">
-		<div id="setgoal-content">
+	<div id="setgoal" class='row'>
+		<div id="setgoal-content" class="small-5 medium-8 large-12 column">
 			<h1> Set a goal </h1>
 			<!-- <form action="confirm"> -->
 			<p> Pick a short term goal. Be descriptive! <br/>
@@ -70,40 +69,55 @@
 				<option value="29">29</option>
 				<option value="30">30</option>
 			</select><br/>
-			<button id="goalSubmitButton" type="submit">Go</button>
+			<em><p id="timeSet">Time has already been set by the other user</p></em>
+			<button class="button radius round" id="goalSubmitButton" type="submit">Go</button>
 			</p> 
 			<!-- </form> -->
 		</div> <!-- setgoal-content -->
 	</div> <!-- setgoal -->
 
- 	<div id="confirm">
-		<div id="confirm-content">
-			<h1> Your Goal </h1>
-			<p id="goalA">  
-			</p> 
-			<!-- enter other persons username when you get a chance -->
-			<h1 id='otherUserHeading'> Their Goal </h1>
-			<p id="goalB">
-			</p>
-			<button id="confirmSubmitButton" type="submit">GO</button>
+ 	<div id="confirm" class='row'>
+		<div id="confirm-content" class="small-5 medium-8 large-12 column">
+		<div class='row'>
+			<div class='small-2 medium-5 large-6 column'>
+				<h1> Your Goal </h1>
+				<p id="goalA">  
+				</p> 
+			</div>
+
+			<div class='small-1 medium-5 large-6 column'>
+				<h1> Their Goal </h1>
+				<p id="goalB">
+				</p>
+			</div>
+		</div>
+			<button class="button radius round small" id="confirmSubmitButton" type="submit">GO</button>
 		</div> 
 	</div> 
  
-	<div id="go">
-		<div id="go-content">
-			<h3> Your Goal </h3>
-			<p id="myGoal">  
-			</p> 
-			<h3> Their Goal </h3>
-			<p id="theirGoal">
-			</p>
+	<div id="go" class='row'>
+		<div id="go-content" class="small-2 medium-8 large-12 column">
+		<div class='row'>
+			<div class='small-1 medium-3 large-6 column'>
+				<h1> Your Goal </h1>
+				<p id="myGoal">  
+				</p> 
+			</div>
+
+			<div class='small-1 medium-3 large-6 column'>
+				<h1> Their Goal </h1>
+				<p id="theirGoal">
+				</p>
+			</div>
+		</div>
+			<br>
 			<!-- chat box -->
 			<div id='chatbox'>
 				<p> Chat about your progress here. </p>
 				<div id='chatbox-content'>
 				</div>
 				<input id='chatbox-send'>
-				<button id="chatboxSendButton" type="submit">Send</button>
+				<button class="button tiny" id="chatboxSendButton" type="submit">Send</button>
 
 			</div>
 			<br/>
@@ -115,12 +129,14 @@
 		</div> <!-- go-content -->
 	</div> <!-- go -->
 
-	<div id="timeup">
+	<div id="timeup" class='row'>
+		<div id="timeup-content" class="small-3 medium-8 large-12 column">
 			<h2> Time's up! </h2>
-			<button id="anotherGoalButton" type="submit">Not finished? Use the same goal</button><br/>
-			<button id="newGoalButton" type="submit">Enter a new goal</button><br/>
+			<button class="button radius round medium" id="repeatGoalButton" type="submit">Not finished? Use the same goal</button><br/>
+			<button class="button radius round medium" id="newGoalButton" type="submit">Enter a new goal</button><br/>
 			<!-- should refresh page -->
-			<button id="finish" type="submit" class="alert">Exit</button>  
+			<button class="button radius round small alert" id="finish" type="submit">Exit</button>  
+		</div>
 	</div>	
 
 
@@ -135,7 +151,6 @@
 	</div>
 	
 
-	</div>
 
 </body>
 </html>

@@ -1,8 +1,7 @@
-var session = function(name){
+var comment = function(name, comment){
 	return {
 		name: name,
-		p1: "",
-		p2: ""
+		comment: comment
 	}
 }
 
@@ -15,8 +14,8 @@ session.prototype.getp1 = function(){
 session.prototype.getp2 = function(){
 	return this.p2;
 }
-session.prototype.toString = function(){
+session.prototype.toString = function(){ 
 	return "Name: " + this.name + " P1: " + this.p1 + "P2: " + this.p2;
 }
 
-module.exports = session;
+module.exports = comment;
