@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var socket = io.connect(':8000/');
+	var socket = io.connect('/');
 	var username = "";
 
 	//start with the username screen
@@ -102,7 +102,6 @@ $(document).ready(function() {
 
 	$('#confirmSubmitButton').click(function(){
 		socket.emit('startTimer');
-
 	});
 
 	socket.on('startTimer', function(){

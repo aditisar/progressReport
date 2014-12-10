@@ -71,6 +71,8 @@ exports.init = function(io) {
 		socket.on('displayGO', function(){
 			console.log('should be shoiwng the GO button now...');
 			io.sockets.emit('displayGO');
+			userSockets[1].emit('displayGO');
+			userSockets[2].emit('displayGO');
 		});
 
 		socket.on('startTimer', function(){
