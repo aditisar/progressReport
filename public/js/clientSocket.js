@@ -116,8 +116,9 @@ $(document).ready(function() {
     socket.on('newChat', function(data){
     	var newMessage = '<p>'+data.message+'</p>'
     	$('#chatbox-content').append(newMessage);
-    	$('#chatbox-content').scrollTop = $('#chatbox-content').scrollHeight;
-
+    	$("#chatbox-content").animate({
+        	scrollTop: $("#chatbox-content").scrollHeight()
+    	}, 300);
     });
 
 
@@ -128,7 +129,7 @@ $(document).ready(function() {
 
 
 	//refresh the page
-	$('$finish').click(function(){
+	$('#finish').click(function(){
 		location.reload();
 	});
 
