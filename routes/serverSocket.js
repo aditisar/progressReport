@@ -73,6 +73,11 @@ exports.init = function(io) {
 			userSockets[2].emit('startTimer');
 		});
 
+		//chat functionality
+		socket.on('sendMessage', function(data){
+			io.sockets.emit('newChat', {message: data.message});
+		});
+
 		socket.on('debug', function(data){
 			console.log(data.message);
 		});

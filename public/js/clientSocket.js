@@ -13,6 +13,13 @@ $(document).ready(function() {
 
 	//When user clicks go, their username is stored in sessionStorage 
 	//and they are taken to the setgoal input
+
+	//press go when you hit enter
+	$('#username').keypress(function(e){
+      if(e.keyCode==13)
+      $('#homeGo').click();
+    });
+
     $('#homeGo').click(function(){
 		if ($('#username').val().length > 0){
 
@@ -78,7 +85,7 @@ $(document).ready(function() {
 
 		socket.emit('debug', {message: 'time should be locked'})
 	});
-//NEED TO MAKE IT SO CONFIRM BUTTON 
+//NEED TO MAKE IT SO CONFIRM BUTTON only shows up after both are ready to go
 
 	$('#confirmSubmitButton').click(function(){
 		socket.emit('startTimer');
@@ -90,8 +97,39 @@ $(document).ready(function() {
 	  			$('#go').fadeIn(1000);
 	  		});
 		timeInSeconds = sessionStorage.time * 60;
-		$('#timer').countdown({until: +timeInSeconds, format: 'mS'}); 
+		$('#timer').countdown({until: +timeInSeconds, format: 'mS', onExpiry: removeCountdown}); 
 
+	});
+
+	//chat functionality
+	$('#chatbox-send').keypress(function(e){
+      if(e.keyCode==13)
+      $('#chatboxSendButton').click();
+    });
+
+    $('#chatboxSendButton').click(function(){
+    	var message = $('#chatbox-send').val();
+    	socket.emit('sendMessage', {message: message})
+    	$('#chatbox-send').val('');
+    });
+
+    socket.on('newChat', function(data){
+    	var newMessage = '<p>'+data.message+'</p>'
+    	$('#chatbox-content').append(newMessage);
+    	$('#chatbox-content').scrollTop = $('#chatbox-content').scrollHeight;
+
+    });
+
+
+	function removeCountdown(){
+		$('#timer').fadeOut();
+	}
+
+
+
+	//refresh the page
+	$('$finish').click(function(){
+		location.reload();
 	});
 
 });
