@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var socket = io.connect('/');
+	var socket = io.connect('/:8000');
 	var username = "";
 
 	//start with the username screen
