@@ -185,6 +185,8 @@ $(document).ready(function() {
 	});
 	$('#feedback').click(function(){
 		$('#footer').fadeToggle();
+		console.log('retrieveComments');
+		retrieveComments();
 	});
 
 	//conducts ajax request to mongodb routes to add comments
@@ -200,10 +202,19 @@ $(document).ready(function() {
     	    success: function(result) {
     	        $('#comments').html(result);
     	    }
-    });
+    	});
+	};
 
-
-};
+	function retrieveComments(){
+		var url= "comment/find?";
+    	$.ajax({
+    	    type: 'GET',
+    	    url: url,
+    	    success: function(result) {
+    	        $('#existingComments').html(result);
+    	    }
+		});
+	}
 
 
 });

@@ -2,12 +2,11 @@
 <% if (obj.length) { %>
 			</br>
 				<% obj.forEach(function(next) { %>
-				<%= var c = JSON.stringify(next) %>
+				<%= next.name + ': ' + next.comment %>
 			</br>
 			<% }); %>
 
 		<% } %>
 </div>
-
 
 <div>

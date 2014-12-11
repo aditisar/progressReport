@@ -50,7 +50,7 @@ exports.insert = function(collection, query, callback) {
 
 // FIND
 exports.find = function(collection, query, callback) {
-        var crsr = mongoDB.collection(collection).find(query);
+        var crsr = mongoDB.collection(collection).find();
         crsr.toArray(function(err, docs) {
           if (err) doError(err);
           callback(docs);
