@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
 	//use this for local testing
-	//var socket = io.connect('/');
+	var socket = io.connect('/');
 	
 	//use this for openshift
-	var socket = io.connect(':8000/');
+	//var socket = io.connect(':8000/');
 	
 	var username = "";
 
@@ -17,9 +17,6 @@ $(document).ready(function() {
 	$('#timeup').hide();
 	$('#footer').hide();
    
-
-	$(document).foundation(); //init foundation
-
 	//When user clicks go, their username is stored in sessionStorage 
 	//and they are taken to the setgoal input
 
@@ -204,9 +201,6 @@ $(document).ready(function() {
     	        $('#comments').html(result);
     	    }
     });
-
-
- 
 
 
 };
