@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var socket = io.connect('/');
+	var socket = io.connect(':8000/');
 	var username = "";
 
 	//start with the username screen
@@ -179,7 +179,7 @@ $(document).ready(function() {
 		location.reload();
 	});
 	$('#feedback').click(function(){
-		('#footer').fadeToggle();
+		$('#footer').fadeToggle();
 	});
 
 	//conducts ajax request to mongodb routes to add comments
