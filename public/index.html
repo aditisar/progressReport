@@ -21,8 +21,8 @@
 			<h1> Welcome to Progress Reporting </h1>
 			<!-- <form action="setGoal"> -->
 			<!-- <p> Create/enter a session: <input id="sessionName"><br/> -->
-			<p>	Enter name: <input id="username"><br/>
-				<button class="button radius round" id="homeGo" type="submit">Go</button>
+			<p>	Enter name: <input id="username"><br/><br/>
+				<button class="button small radius" id="homeGo" type="submit">Go</button>
 			</p> 
 			<!-- </form> -->
 		</div> <!-- home-info -->
@@ -38,7 +38,7 @@
 
 			How many minutes: 
 			<select id="time">
-				<option value="1">1</option>
+				<option value=".06">1</option>
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="4">4</option>
@@ -70,7 +70,7 @@
 				<option value="30">30</option>
 			</select><br/>
 			<em><p id="timeSet">Time has already been set by the other user</p></em>
-			<button class="button radius round" id="goalSubmitButton" type="submit">Go</button>
+			<button class="button radius" id="goalSubmitButton" type="submit">Go</button>
 			</p> 
 			<!-- </form> -->
 		</div> <!-- setgoal-content -->
@@ -91,7 +91,7 @@
 				</p>
 			</div>
 		</div>
-			<button class="button radius round small" id="confirmSubmitButton" type="submit">GO</button>
+			<button class="button radius small" id="confirmSubmitButton" type="submit">GO</button>
 		</div> 
 	</div> 
  
@@ -132,25 +132,42 @@
 	<div id="timeup" class='row'>
 		<div id="timeup-content" class="small-3 medium-8 large-12 column">
 			<h2> Time's up! </h2>
-			<button class="button radius round medium" id="repeatGoalButton" type="submit">Not finished? Use the same goal</button><br/>
-			<button class="button radius round medium" id="newGoalButton" type="submit">Enter a new goal</button><br/>
+			<button class="button radius medium" id="repeatGoalButton" type="submit">Not finished? Use the same goal</button><br/>
+			<button class="button radius medium success" id="newGoalButton" type="submit">Enter a new goal</button><br/>
 			<!-- should refresh page -->
-			<button class="button radius round small alert" id="finish" type="submit">Exit</button>  
+			<button class="button radius small alert" id="finish" type="submit">Exit</button>  
 		</div>
 	</div>	
 
 
 
 
-	<div id="awaiting-friend">
+	<div class='row' id="awaiting-friend">
+		<br>
+		<br>
+		<br>
 		Waiting for another person to join...
 	</div> <!-- awaiing-player -->
 
-	<div id="busy-message">
+	<div class='row' id="busy-message">
+		<br>
+		<br>
+		<br>
 		There are already two people working. 
 	</div>
 	
 
 
+	<div class='footer'>
+		<a href=>Feedback</a>
+		 <p>Add Comment:</p>
+    Name: <input id="commentName"><br>
+    Comment: <input id="comment"><br>
+    <button id="addComment" type="submit">Create</button>
+    <br>
+    <div id="createMessage">
+
+    </div>	
+	</div>
 </body>
 </html>

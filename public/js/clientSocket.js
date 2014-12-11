@@ -94,11 +94,11 @@ $(document).ready(function() {
 	//once time is set by other player, don't let them choose and tell them why
 	socket.on('lockTimeAndOtherGoal', function(data){
 		$('#time').val(data.time);
+		sessionStorage.time = data.time;
 		$('#time').prop('disabled', true);
 		$('#timeSet').show();
 		sessionStorage.theirGoal = data.goal;
 		$('#goalB').text(data.goal);
-
 		socket.emit('debug', {message: 'time should be locked'})
 	});
 //NEED TO MAKE IT SO CONFIRM BUTTON only shows up after both are ready to go
@@ -114,6 +114,8 @@ $(document).ready(function() {
 	  			$('#go').fadeIn(1000);
 	  		});
 		timeInSeconds = sessionStorage.time * 60;
+		$('#timer').show();
+		$('#timer').removeClass('is-countdown');
 		$('#timer').countdown({until: +timeInSeconds, format: 'mS', onExpiry: removeCountdown}); 
 
 	});
@@ -147,18 +149,51 @@ $(document).ready(function() {
 	//resets goal info (doesn't touch Sessionstorage tho in case they use the same one)
 	function resetGoal(){
 		$('#time').prop('disabled', false);
+		sessionStorage.theirGoal="";
+		$('#timeSet').hide();
+		$('#chatbox-content').html('');
+		$('#timer').html('');
+
 	}
 
+	//when user repeats goal, taken back to that page with same goal as before
 	$('#repeatGoalButton').click(function(){
 		$('#timeup').fadeOut().promise().done(function(){
 	  			$('#setgoal').fadeIn(1000);
 	  			$('#goalDescription').text(sessionStorage.myGoal);
+	  			resetGoal();
+	  	});
+	});
+
+	//when user repeats goal, taken back to that page with goal cleared
+	$('#newGoalButton').click(function(){
+		$('#goalDescription').val('');
+		$('#timeup').fadeOut().promise().done(function(){
+	  			$('#setgoal').fadeIn(1000);
+	  			resetGoal();
 	  	});
 	});
 	//refresh the page
 	$('#finish').click(function(){
 		location.reload();
 	});
+
+	$('#addComment').on("click",addComment);
+
+	function addComment(){
+    	var name = $("#commentName").val();
+    	var comment = $("#comment").val();
+    	var url= "comments/" + name + "/" + comment;
+    	$.ajax({
+    	    type: 'GET',
+    	    url: url,
+    	    success: function(result) {
+    	        $('#createMessage').html(result);
+    	    }
+    });
+    
+};
+
 
 });
 
