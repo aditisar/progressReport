@@ -23,15 +23,7 @@ var SimpleStaticServer = function() {
   self.app.set('views', __dirname + '/views');
   self.app.set('view engine', 'ejs');
 
-  // self.app.get('/', routes.index);
-  //self.app.put('/createSession/:p1', sockets.createSession);
-  // self.app.get('/confirm', routes.confirm);
-  // self.app.get('/go', routes.go);
-
-//app.get('/:collection/:operation', dbRoutes.mongo);
-   //self.app.get('/comment/edit/name', dbRoutes.editComment);
-   //self.app.get('/comments', dbRoutes.getUser);
-   //self.app.delete('/:collection/:name', dbRoutes.deleteComment);
+   self.app.get('/:collection/:operation', dbRoutes.mongo);
 
    self.app.use(dbRoutes.errorMessage);
 

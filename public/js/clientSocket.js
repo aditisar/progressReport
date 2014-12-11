@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var socket = io.connect('/:8000');
+	var socket = io.connect('/');
 	var username = "";
 
 	//start with the username screen
@@ -10,6 +10,7 @@ $(document).ready(function() {
 	$('#busy-message').hide();
 	$('#awaiting-friend').hide();
 	$('#timeup').hide();
+	$('#footer').hide();
 
 
 	//When user clicks go, their username is stored in sessionStorage 
@@ -177,18 +178,22 @@ $(document).ready(function() {
 	$('#finish').click(function(){
 		location.reload();
 	});
+	$('#feedback').click(function(){
+		('#footer').fadeToggle();
+	});
 
+	//conducts ajax request to mongodb routes to add comments
 	$('#addComment').on("click",addComment);
 
 	function addComment(){
     	var name = $("#commentName").val();
     	var comment = $("#comment").val();
-    	var url= "comments/" + name + "/" + comment;
+   		var url= "comment/insert?name=" + name + "&comment=" + comment;
     	$.ajax({
     	    type: 'GET',
     	    url: url,
     	    success: function(result) {
-    	        $('#createMessage').html(result);
+    	        $('#comments').html(result);
     	    }
     });
 

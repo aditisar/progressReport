@@ -1,74 +1,58 @@
+// Requires the application model
 var mongo = require("../models/comment.js")
 
-//find specific comment
-exports.getComments = function(req, res) {
-  var comment = '';
-  comment = {};
-  mongo.find( "commentInfo", 
-    comment,
-    function(model) {
-     res.render('commentview', { obj: model });
-   }
-   );
-}
+// No path:  display instructions for use
+exports.index = function(req, res) {
+  res.render('help');
+};
 
-exports.loadCommentEdit = function(req, res) {
-  var requestedcomment = {
-    commentname: req.params.commentname,
-    password: req.params.password,
-    firstname: req.params.firstname,
-    lastname: req.params.lastname
-  };
-  return res.render('editcomment', {comment: requestedcomment});
-}
-
-//update an comment
-exports.postComment = function(req, res) {
-  var comment = {
-    name:req.params.name, 
-    comment:req.params.comment
-  };
-  console.log(comment);
-  mongo.update( req.params.collection, 
-    comment,
-    function(model) {
-      res.end('Successful Update');
+exports.mongo = function(req, res){
+  /*
+   * The path parameters provide the operation to do and the collection to use
+   * The query string provides the object to insert, find, or update
+   */
+  switch (req.params.operation) {
+    case 'insert':  console.log("req.query is "+JSON.stringify(req.query));
+                    mongo.insert( req.params.collection, 
+                                  req.query,
+                                  function(model) {
+                                    res.render('comment', {title: 'Mongo Demo', obj: model});
+                                    }
+                                  );
+                    console.log("at end of insert case");
+                    break;
+    case 'find':    mongo.find( req.params.collection, 
+                                  req.query,
+                                  function(model) {
+                                    res.render('comment',{title: 'Mongo Demo', obj: model});
+                                    }
+                                  );
+                    break;
+    case 'update':  mongo.update( req.params.collection, 
+                                  req.query,
+                                  function(model) {
+                                    res.render('comment',{title: 'Mongo Demo', obj: model});
+                                    }
+                                  );
+                    break;
+    //added delete
+    case 'delete': console.log("req.query is "+JSON.stringify(req.query));
+                    mongo.delete( req.params.collection, 
+                                  req.query,
+                                  function(model) {
+                                    res.render('comment', {title: 'Mongo Demo', obj: model});
+                                    }
+                                  );
+                    console.log("at end of delete case");
+                    break;
     }
-    );
-}
-
-//create a new comment
-exports.addComment = function(req, res) {
-  console.log('adding comment');
-  var comment = 
-  {	
-  	name: req.params.name,
-    comment: req.params.comment,
-  };
-  console.log('comment to be added: '+JSON.stringify(comment));
-  mongo.insert( req.params.collection, 
-    req.query,
-    function(model) {
-      console.log("adding comment");
-      res.render('home');
-    });
-}
-
-//delete an comment
-exports.deleteUser = function(req, res) {
-  console.log('deleting a comment');
-  var comment = {commentname:req.params.commentname};
-  console.log(comment);
-    mongo.delete( req.params.collection, 
-     comment,
-     function(model) {
-        res.render('home');
-      }
-    );
   }
+  
 
+// In the case that no route has been matched
 exports.errorMessage = function(req, res){
   var message = '<p>Error, did not understand path '+req.path+"</p>";
   // Set the status to 404 not found, and render a message to the user.
   res.status(404).send(message);
 };
+
