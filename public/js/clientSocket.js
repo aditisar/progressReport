@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+	//use this for local testing
 	//var socket = io.connect('/');
 	
 	//use this for openshift
@@ -15,7 +16,9 @@ $(document).ready(function() {
 	$('#awaiting-friend').hide();
 	$('#timeup').hide();
 	$('#footer').hide();
+   
 
+	$(document).foundation(); //init foundation
 
 	//When user clicks go, their username is stored in sessionStorage 
 	//and they are taken to the setgoal input
@@ -202,9 +205,9 @@ $(document).ready(function() {
     	    }
     });
 
-    function getComments(){
 
-    }
+ 
+
 
 };
 
