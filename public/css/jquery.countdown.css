@@ -1,14 +1,14 @@
 /* jQuery Countdown styles 2.0.0. */
-.is-countdown {
+/*.is-countdown {
 	border: 1px solid #ccc;
 	background-color: #eee;
-}
+}*/
 .countdown-rtl {
 	direction: rtl;
 }
-.countdown-holding span {
+/*.countdown-holding span {
 	color: #888;
-}
+}*/
 .countdown-row {
 	clear: both;
 	width: 100%;
@@ -43,7 +43,7 @@
 	text-align: center;
 }
 .countdown-amount {
-    font-size: 200%;
+    font-size: 400%;
 }
 .countdown-period {
     display: block;

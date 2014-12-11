@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
-	var socket = io.connect(':8000/');
+	var socket = io.connect('/');
+	
+	//use this for openshift
+	//var socket = io.connect(':8000/');
+	
 	var username = "";
 
 	//start with the username screen
