@@ -1,10 +1,10 @@
 $(document).ready(function() {
 
 	//use this for local testing
-	var socket = io.connect('/');
+	//var socket = io.connect('/');
 	
 	//use this for openshift
-	//var socket = io.connect(':8000/');
+	var socket = io.connect(':8000/');
 	
 	var username = "";
 
