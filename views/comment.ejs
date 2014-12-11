@@ -2,8 +2,12 @@
 <% if (obj.length) { %>
 			</br>
 				<% obj.forEach(function(next) { %>
-				<%= JSON.stringify(next) %></br>
+				<%= var c = JSON.stringify(next) %>
+			</br>
 			<% }); %>
-			
+
 		<% } %>
 </div>
+
+
+<div>

@@ -91,7 +91,7 @@
 				</p>
 			</div>
 		</div>
-			<button class="button radius small" id="confirmSubmitButton" type="submit">GO</button>
+			<button class="button radius small" id="confirmSubmitButton" type="submit">START</button>
 		</div> 
 	</div> 
  
@@ -110,17 +110,7 @@
 				</p>
 			</div>
 		</div>
-			<br>
-			<!-- chat box -->
-			<div id='chatbox'>
-				<p> Chat about your progress here. </p>
-				<div id='chatbox-content'>
-				</div>
-				<input id='chatbox-send'>
-				<button class="button tiny" id="chatboxSendButton" type="submit">Send</button>
 
-			</div>
-			<br/>
 			<!-- timer -->
 			<div id='timer'>
 			</div>
@@ -132,6 +122,16 @@
 	<div id="timeup" class='row'>
 		<div id="timeup-content" class="small-3 medium-8 large-12 column">
 			<h2> Time's up! </h2>
+			<!-- chat box -->
+			<div id='chatbox'>
+				<p> Chat about your progress here. </p>
+				<div id='chatbox-content'>
+				</div>
+				<input id='chatbox-send'>
+				<button class="button tiny" id="chatboxSendButton" type="submit">Send</button>
+
+			</div>
+
 			<button class="button radius medium" id="repeatGoalButton" type="submit">Not finished? Use the same goal</button><br/>
 			<button class="button radius medium success" id="newGoalButton" type="submit">Enter a new goal</button><br/>
 			<!-- should refresh page -->
@@ -155,8 +155,8 @@
 		<br>
 		There are already two people working. 
 	</div>
-	
-	<button id="feedback" class="button radius tiny">Feedback</button> 
+	<br/><br/><br/>
+	<button id="feedback" class="button radius secondary tiny">Feedback</button> 
 
 
 	<div id='footer' class='row'>
@@ -164,11 +164,12 @@
 		 <p>Add Comment:</p>
     	Name: <input id="commentName"><br>
     	Comment: <input id="comment"><br>
-    	<button id="addComment" class='button radius small' type="submit">Create</	button>
+    	<button id="addComment" class='button radius small' type="submit">Create</button>
     	<br>
-    <div id="comments">
-
-    </div>	
+    	<div id="comments">
+	
+    	</div>	
 	</div>
-</body>
+	</div>
+</body> 
 </html>

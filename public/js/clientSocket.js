@@ -108,6 +108,7 @@ $(document).ready(function() {
 		socket.emit('startTimer');
 	});
 
+//once timer starts, display chat screen etc
 	socket.on('startTimer', function(){
 		$('#myGoal').append('<p>'+sessionStorage.myGoal +'</p>');
 		$('#theirGoal').append('<p>'+sessionStorage.theirGoal +'</p>');
@@ -196,6 +197,10 @@ $(document).ready(function() {
     	        $('#comments').html(result);
     	    }
     });
+
+    function getComments(){
+
+    }
 
 };
 
