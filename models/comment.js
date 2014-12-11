@@ -1,7 +1,7 @@
 var util = require("util");
 var mongoClient = require('mongodb').MongoClient;
 
-var url = 'mongodb://localhost:27017/Esport';
+var url = 'mongodb://localhost:27017/progressreports';
 // if OPENSHIFT env variables are present, use the available connection info:
 if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
   url = 'mongodb://'+ process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
